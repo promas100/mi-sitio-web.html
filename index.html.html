@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sitio web dedicado a la venta de artículos escolares entre otros productos populares.">
+    <meta name="keywords" content="artículos escolares, libros, juguetes, electrónica, familia">
+    <meta name="robots" content="index, follow">
+    <title>OHANA - Tienda de Artículos Escolares</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        body {
+            background-color: #e6e6fa;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #87cefa;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 3px solid #ff4500;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s;
+        }
+
+        header h1, header h2 {
+            color: #ff4500;
+            margin: 0;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            animation: slideInFromLeft 1s;
+        }
+
+        header h2 {
+            font-size: 1.5em;
+            margin-top: 10px;
+            animation: slideInFromRight 1s;
+        }
+
+        nav a {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #ff69b4;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .content {
+            padding: 20px;
+            margin-top: 100px;
+            text-align: center;
+            animation: fadeInUp 1s;
+        }
+
+        .carousel-inner .carousel-item {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #ff4500;
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        .carousel-indicators li {
+            background-color: #ff4500;
+        }
+
+        .carousel-control-prev-icon:hover,
+        .carousel-control-next-icon:hover {
+            background-color: #ff69b4;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            animation: fadeIn 1s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-custom {
+            background-color: #ff4500;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #ff69b4;
+            color: #fff;
+        }
+
+        footer {
+            background-color: #ffebcd;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            border-top: 3px solid #ff4500;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s;
+        }
+
+        /* Botón "Volver Arriba" */
+        #back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: none;
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            transition: opacity 0.3s;
+        }
+
+        #back-to-top:hover {
+            background-color: #ff69b4;
+        }
+
+        /* Resaltado de la sección activa */
+        .active-section {
+            animation: highlightSection 1s;
+        }
+
+        @keyframes highlightSection {
+            from { background-color: #ffebcd; }
+            to { background-color: transparent; }
+        }
+
+        /* Estrellas de calificación */
+        .rating {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .rating > input {
+            display: none;
+        }
+
+        .rating > label {
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .rating > input:checked ~ label,
+        .rating > label:hover,
+        .rating > label:hover ~ label {
+            color: #ff4500;
+        }
+
+        /* Reseñas */
+        .reviews {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .review-item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-form {
+            margin-top: 15px;
+        }
+    </style>
+<style type="text/css">
+.grande { font-size: 60px; }
+</style>
+<script>
+// Escribir aqui el código Javascript
+</script>
+</head>
+<body>
+    <div class="header-container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+            <a class="navbar-brand text-white" href="#">OHANA</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#description"><i class="fas fa-info-circle icon"></i>Descripción</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#temas-subtemas"><i class="fas fa-th-list icon"></i>Temas y Subtemas</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#productos-destacados"><i class="fas fa-star icon"></i>Productos Destacados</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#author-info"><i class="fas fa-user icon"></i>Acerca del Autor</a></li>
+                </ul>
+            </div>
+        </nav>
+        <header>
+            <h1>OHANA</h1>
+            <h2>Ohana significa familia y tu familia nunca te abandona</h2>
+        </header>
+    </div>
+    <div class="content container">
+        <section class="card" id="description">
+            <article class="card-body">
+                <h2 class="card-title">Descripción</h2>
+                <p class="card-text">Este sitio web está dedicado a vender artículos escolares entre otros productos populares.</p>
+            </article>
+        </section>
+        <section class="card" id="temas-subtemas">
+            <article class="card-body">
+                <h2 class="card-title">Temas y Subtemas</h2>
+                <ul class="card-text">
+                    <li><a href="#articulos-escolares"><i class="fas fa-pencil-alt icon"></i>Artículos escolares</a></li>
+                    <li><a href="#libros"><i class="fas fa-book icon"></i>Libros</a></li>
+                    <li><a href="#juguetes"><i class="fas fa-puzzle-piece icon"></i>Juguetes</a></li>
+                    <li><a href="#electronica"><i class="fas fa-laptop icon"></i>Electrónica</a></li>
+                    <li><a href="https://example.com"><i class="fas fa-ellipsis-h icon"></i>Etc.</a></li>
+                </ul>
+            </article>
+        </section>
+        <section class="card" id="productos-destacados">
+            <article class="card-body">
+                <h2 class="card-title">Productos Destacados</h2>
+                <div id="carouselProductos" class="carousel slide" data-ride="carousel" data-interval="3000">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselProductos" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselProductos" data-slide-to="1" class=""></li>
+                        <li data-target="#carouselProductos" data-slide-to="2" class=""></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <!-- Primera fila de productos -->
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/004/171/397/original/open-book-on-a-stack-of-books-in-cartoon-style-free-vector.jpg" alt="Cuadernos">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Cuadernos</h4>
+                                            <p class="card-text">Cuadernos de 100 hojas con diseños variados.</p>
+                                            <h5 class="text-primary">$7,000</h5>
+                                            <div class="rating" data-product-id="cuadernos">
+                                                <input type="radio" id="star5-cuadernos" name="rating-cuadernos" value="5"><label for="star5-cuadernos" title="5 estrellas">★</label>
+                                                <input type="radio" id="star4-cuadernos" name="rating-cuadernos" value="4"><label for="star4-cuadernos" title="4 estrellas">★</label>
+                                                <input type="radio" id="star3-cuadernos" name="rating-cuadernos" value="3"><label for="star3-cuadernos" title="3 estrellas">★</label>
+                                                <input type="radio" id="star2-cuadernos" name="rating-cuadernos" value="2"><label for="star2-cuadernos" title="2 estrellas">★</label>
+                                                <input type="radio" id="star1-cuadernos" name="rating-cuadernos" value="1"><label for="star1-cuadernos" title="1 estrella">★</label>
+                                            </div>
+                                            <button class="btn btn-custom"><i class="fas fa-shopping-cart icon"></i>Comprar</button>
+                                            <div class="reviews" id="reviews-cuadernos"></div>
+                                            <div class="review-form">
+                                                <input type="text" class="form-control" id="review-text-cuadernos" placeholder="Escribe tu reseña aquí...">
+                                                <button class="btn btn-primary mt-2" onclick="addReview('cuadernos')">Enviar Reseña</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/004/171/389/original/collection-of-different-colored-pencils-free-vector.jpg" alt="Lápices">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Lápices</h4>
+                                            <p class="card-text">Paquete de 12 lápices de grafito.</p>
+                                            <h5 class="text-primary">$5,000</h5>
+                                            <div class="rating" data-product-id="lapices">
+                                                <input type="radio" id="star5-lapices" name="rating-lapices" value="5"><label for="star5-lapices" title="5 estrellas">★</label>
+                                                <input type="radio" id="star4-lapices" name="rating-lapices" value="4"><label for="star4-lapices" title="4 estrellas">★</label>
+                                                <input type="radio" id="star3-lapices" name="rating-lapices" value="3"><label for="star3-lapices" title="3 estrellas">★</label>
+                                                <input type="radio" id="star2-lapices" name="rating-lapices" value="2"><label for="star2-lapices" title="2 estrellas">★</label>
+                                                <input type="radio" id="star1-lapices" name="rating-lapices" value="1"><label for="star1-lapices" title="1 estrella">★</label>
+                                            </div>
+                                            <button class="btn btn-custom"><i class="fas fa-shopping-cart icon"></i>Comprar</button>
+                                            <div class="reviews" id="reviews-lapices"></div>
+                                            <div class="review-form">
+                                                <input type="text" class="form-control" id="review-text-lapices" placeholder="Escribe tu reseña aquí...">
+                                                <button class="btn btn-primary mt-2" onclick="addReview('lapices')">Enviar Reseña</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/004/171/395/original/paper-crumpled-and-eraser-free-vector.jpg" alt="Borradores">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Borradores</h4>
+                                            <p class="card-text">Borradores de alta calidad en varios colores.</p>
+                                            <h5 class="text-primary">$3,000</h5>
+                                            <div class="rating" data-product-id="borradores">
+                                                <input type="radio" id="star5-borradores" name="rating-borradores" value="5"><label for="star5-borradores" title="5 estrellas">★</label>
+                                                <input type="radio" id="star4-borradores" name="rating-borradores" value="4"><label for="star4-borradores" title="4 estrellas">★</label>
+                                                <input type="radio" id="star3-borradores" name="rating-borradores" value="3"><label for="star3-borradores" title="3 estrellas">★</label>
+                                                <input type="radio" id="star2-borradores" name="rating-borradores" value="2"><label for="star2-borradores" title="2 estrellas">★</label>
+                                                <input type="radio" id="star1-borradores" name="rating-borradores" value="1"><label for="star1-borradores" title="1 estrella">★</label>
+                                            </div>
+                                            <button class="btn btn-custom"><i class="fas fa-shopping-cart icon"></i>Comprar</button>
+                                            <div class="reviews" id="reviews-borradores"></div>
+                                            <div class="review-form">
+                                                <input type="text" class="form-control" id="review-text-borradores" placeholder="Escribe tu reseña aquí...">
+                                                <button class="btn btn-primary mt-2" onclick="addReview('borradores')">Enviar Reseña</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Segunda fila de productos -->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/004/171/408/original/books-stack-cartoon-free-vector.jpg" alt="Libros de Texto">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Libros de Texto</h4>
+                                            <p class="card-text">Libros de texto para todos los niveles educativos.</p>
+                                            <h5 class="text-primary">$50,000</h5>
+                                            <div class="rating" data-product-id="libros-texto">
+                                                <input type="radio" id="star5-libros-texto" name="rating-libros-texto" value="5"><label for="star5-libros-texto" title="5 estrellas">★</label>
+                                                <input type="radio" id="star4-libros-texto" name="rating-libros-texto" value="4"><label for="star4-libros-texto" title="4 estrellas">★</label>
+                                                <input type="radio" id="star3-libros-texto" name="rating-libros-texto" value="3"><label for="star3-libros-texto" title="3 estrellas">★</label>
+                                                <input type="radio" id="star2-libros-texto" name="rating-libros-texto" value="2"><label for="star2-libros-texto" title="2 estrellas">★</label>
+                                                <input type="radio" id="star1-libros-texto" name="rating-libros-texto" value="1"><label for="star1-libros-texto" title="1 estrella">★</label>
+                                            </div>
+                                            <button class="btn btn-custom"><i class="fas fa-shopping-cart icon"></i>Comprar</button>
+                                            <div class="reviews" id="reviews-libros-texto"></div>
+                                            <div class="review-form">
+                                                <input type="text" class="form-control" id="review-text-libros-texto" placeholder="Escribe tu reseña aquí...">
+                                                <button class="btn btn-primary mt-2" onclick="addReview('libros-texto')">Enviar Reseña</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/004/171/384/original/stack-of-different-types-of-books-free-vector.jpg" alt="Libros de Cuentos">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Libros de Cuentos</h4>
+                                            <p class="card-text">Libros de cuentos infantiles ilustrados.</p>
+                                            <h5 class="text-primary">$30,000</h5>
+                                            <div class="rating" data-product-id="libros-cuentos">
+                                                <input type="radio" id="star5-libros-cuentos" name="rating-libros-cuentos" value="5"><label for="star5-libros-cuentos" title="5 estrellas">★</label>
+                                                <input type="radio" id="star4-libros-cuentos" name="rating-libros-cuentos" value="4"><label for="star4-libros-cuentos" title="4 estrellas">★</label>
+                                                <input type="radio" id="star3-libros-cuentos" name="rating-libros-cuentos" value="3"><label for="star3-libros-cuentos" title="3 estrellas">★</label>
+                                                <input type="radio" id="star2-libros-cuentos" name="rating-libros-cuentos" value="2"><label for="star2-libros-cuentos" title="2 estrellas">★</label>
+                                                <input type="radio" id="star1-libros-cuentos" name="rating-libros-cuentos" value="1"><label for="star1-libros-cuentos" title="1 estrella">★</label>
+                                            </div>
+                                            <button class="btn btn-custom"><i class="fas fa-shopping-cart icon"></i>Comprar</button>
+                                            <div class="reviews" id="reviews-libros-cuentos"></div>
+                                            <div class="review-form">
+                                                <input type="text" class="form-control" id="review-text-libros-cuentos" placeholder="Escribe tu reseña aquí...">
+                                                <button class="btn btn-primary mt-2" onclick="addReview('libros-cuentos')">Enviar Reseña</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/004/171/393/original/open-book-with-a-hand-holding-pencil-free-vector.jpg" alt="Novelas">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Novelas</h4>
+                                            <p class="card-text">Las últimas novelas de autores reconocidos.</p>
+                                            <h5 class="text-primary">$40,000</h5>
+                                            <div class="rating" data-product-id="novelas">
+                                                <input type="radio" id="star5-novelas" name="rating-novelas" value="5"><label for="star5-novelas" title="5 estrellas">★</label>
+                                                <input type="radio" id="star4-novelas" name="rating-novelas" value="4"><label for="star4-novelas" title="4 estrellas">★</label>
+                                                <input type="radio" id="star3-novelas" name="rating-novelas" value="3"><label for="star3-novelas" title="3 estrellas">★</label>
+                                                <input type="radio" id="star2-novelas" name="rating-novelas" value="2"><label for="star2-novelas" title="2 estrellas">★</label>
+                                                <input type="radio" id="star1-novelas" name="rating-novelas" value="1"><label for="star1-novelas" title="1 estrella">★</label>
+                                            </div>
+                                            <button class="btn btn-custom"><i class="fas fa-shopping-cart icon"></i>Comprar</button>
+                                            <div class="reviews" id="reviews-novelas"></div>
+                                            <div class="review-form">
+                                                <input type="text" class="form-control" id="review-text-novelas" placeholder="Escribe tu reseña aquí...">
+                                                <button class="btn btn-primary mt-2" onclick="addReview('novelas')">Enviar Reseña</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tercera fila de productos -->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/004/171/390/original/barbie-doll-in-cartoon-style-free-vector.jpg" alt="Muñecas">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Muñecas</h4>
+                                            <p class="card-text">Muñecas de varios tamaños y modelos.</p>
+                                            <h5 class="text-primary">$25,000</h5>
+                                            <div class="rating" data-product-id="munecas">
+                                                <input type="radio" id="star5-munecas" name="rating-munecas" value="5"><label for="star5-munecas" title="5 estrellas">★</label>
+                                                <input type="radio" id="star4-munecas" name="rating-munecas" value="4"><label for="star4-munecas" title="4 estrellas">★</label>
+                                                <input type="radio" id="star3-munecas" name="rating-munecas" value="3"><label for="star3-munecas" title="3 estrellas">★</label>
+                                                <input type="radio" id="star2-munecas" name="rating-munecas" value="2"><label for="star2-munecas" title="2 estrellas">★</label>
+                                                <input type="radio" id="star1-munecas" name="rating-munecas" value="1"><label for="star1-munecas" title="1 estrella">★</label>
+                                            </div>
+                                            <button class="btn btn-custom"><i class="fas fa-shopping-cart icon"></i>Comprar</button>
+                                            <div class="reviews" id="reviews-munecas"></div>
+                                            <div class="review-form">
+                                                <input type="text" class="form-control" id="review-text-munecas" placeholder="Escribe tu reseña aquí...">
+                                                <button class="btn btn-primary mt-2" onclick="addReview('munecas')">Enviar Reseña</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/004/171/405/original/toy-train-in-cartoon-style-free-vector.jpg" alt="Carros de Juguete">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Carros de Juguete</h4>
+                                            <p class="card-text">Carros de juguete a escala.</p>
+                                            <h5 class="text-primary">$15,000</h5>
+                                            <div class="rating" data-product-id="carros-juguete">
+                                                <input type="radio" id="star5-carros-juguete" name="rating-carros-juguete" value="5"><label for="star5-carros-juguete" title="5 estrellas">★</label>
+                                                <input type="radio" id="star4-carros-juguete" name="rating-carros-juguete" value="4"><label for="star4-carros-juguete" title="4 estrellas">★</label>
+                                                <input type="radio" id="star3-carros-juguete" name="rating-carros-juguete" value="3"><label for="star3-carros-juguete" title="3 estrellas">★</label>
+                                                <input type="radio" id="star2-carros-juguete" name="rating-carros-juguete" value="2"><label for="star2-carros-juguete" title="2 estrellas">★</label>
+                                                <input type="radio" id="star1-carros-juguete" name="rating-carros-juguete" value="1"><label for="star1-carros-juguete" title="1 estrella">★</label>
+                                            </div>
+                                            <button class="btn btn-custom"><i class="fas fa-shopping-cart icon"></i>Comprar</button>
+                                            <div class="reviews" id="reviews-carros-juguete"></div>
+                                            <div class="review-form">
+                                                <input type="text" class="form-control" id="review-text-carros-juguete" placeholder="Escribe tu reseña aquí...">
+                                                <button class="btn btn-primary mt-2" onclick="addReview('carros-juguete')">Enviar Reseña</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/004/171/403/original/board-games-cartoon-free-vector.jpg" alt="Juegos de Mesa">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Juegos de Mesa</h4>
+                                            <p class="card-text">Juegos de mesa para toda la familia.</p>
+                                            <h5 class="text-primary">$35,000</h5>
+                                            <div class="rating" data-product-id="juegos-mesa">
+                                                <input type="radio" id="star5-juegos-mesa" name="rating-juegos-mesa" value="5"><label for="star5-juegos-mesa" title="5 estrellas">★</label>
+                                                <input type="radio" id="star4-juegos-mesa" name="rating-juegos-mesa" value="4"><label for="star4-juegos-mesa" title="4 estrellas">★</label>
+                                                <input type="radio" id="star3-juegos-mesa" name="rating-juegos-mesa" value="3"><label for="star3-juegos-mesa" title="3 estrellas">★</label>
+                                                <input type="radio" id="star2-juegos-mesa" name="rating-juegos-mesa" value="2"><label for="star2-juegos-mesa" title="2 estrellas">★</label>
+                                                <input type="radio" id="star1-juegos-mesa" name="rating-juegos-mesa" value="1"><label for="star1-juegos-mesa" title="1 estrella">★</label>
+                                            </div>
+                                            <button class="btn btn-custom"><i class="fas fa-shopping-cart icon"></i>Comprar</button>
+                                            <div class="reviews" id="reviews-juegos-mesa"></div>
+                                            <div class="review-form">
+                                                <input type="text" class="form-control" id="review-text-juegos-mesa" placeholder="Escribe tu reseña aquí...">
+                                                <button class="btn btn-primary mt-2" onclick="addReview('juegos-mesa')">Enviar Reseña</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Más filas de productos se pueden añadir aquí -->
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselProductos" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselProductos" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
+                </div>
+            </article>
+        </section>
+        <section class="card" id="author-info">
+            <article class="card-body">
+                <h2 class="card-title">Acerca del Autor</h2>
+                <p class="small-text">Nombre: Javier Mauricio Rodríguez Malagón</p>
+                <p class="small-text">Contacto: 10003337774</p>
+                <p class="small-text">Correo: javaskolmi2024@gmail.com</p>
+                <p class="small-text">Institución: Tienda Miscelánea Educativa</p>
+                <img src="https://i.imgur.com/xDXgKHY.png" alt="Imagen del autor" class="img-fluid">
+            </article>
+        </section>
+    </div>
+    <footer>
+        <p>© 2024 Javier Mauricio Rodríguez Malagón. Todos los derechos reservados.</p>
+    </footer>
+    <button id="back-to-top" title="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Guardar y mostrar la calificación en localStorage
+        document.querySelectorAll('.rating').forEach(rating => {
+            const productId = rating.getAttribute('data-product-id');
+            const savedRating = localStorage.getItem(`rating-${productId}`);
+            
+            if (savedRating) {
+                const ratingInput = document.querySelector(`#star${savedRating}-${productId}`);
+                if (ratingInput) {
+                    ratingInput.checked = true;
+                }
+            }
+
+            rating.addEventListener('change', (event) => {
+                const selectedRating = event.target.value;
+                localStorage.setItem(`rating-${productId}`, selectedRating);
+                alert(`Has calificado el producto con ${selectedRating} estrellas.`);
+            });
+        });
+
+        // Agregar reseñas y guardarlas en localStorage
+        function addReview(productId) {
+            const reviewText = document.getElementById(`review-text-${productId}`).value.trim();
+            if (reviewText) {
+                let reviews = JSON.parse(localStorage.getItem(`reviews-${productId}`)) || [];
+                reviews.push(reviewText);
+                localStorage.setItem(`reviews-${productId}`, JSON.stringify(reviews));
+                displayReviews(productId);
+                document.getElementById(`review-text-${productId}`).value = ''; // Limpiar el campo de texto
+            } else {
+                alert('Por favor, escribe una reseña antes de enviarla.');
+            }
+        }
+
+        // Mostrar las reseñas guardadas
+        function displayReviews(productId) {
+            const reviewsContainer = document.getElementById(`reviews-${productId}`);
+            const reviews = JSON.parse(localStorage.getItem(`reviews-${productId}`)) || [];
+            reviewsContainer.innerHTML = reviews.map(review => `<div class="review-item">${review}</div>`).join('');
+        }
+
+        // Inicializar las reseñas para cada producto
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.rating').forEach(rating => {
+                const productId = rating.getAttribute('data-product-id');
+                displayReviews(productId);
+            });
+        });
+    </script>
+
+
+
+
+</body></html>
